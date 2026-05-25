@@ -1,4 +1,4 @@
 streamlit
-fyers-apiv3
 pandas
 numpy
+git+https://github.com/FyersDev/fyers-api-sample-code.git
