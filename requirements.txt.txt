@@ -1,4 +1,4 @@
-streamlit
+streamlit==1.57.0
 pandas
 numpy
-fyers-apiv3
+git+https://github.com/FyersDev/fyers-api-v3.git
