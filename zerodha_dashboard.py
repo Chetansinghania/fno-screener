@@ -16,8 +16,6 @@ fyers = fyersModel.FyersModel(
     is_async=False,
     log_path=""
 )
-)
-
 # ============================================
 # ALL PREMIUM F&O STOCKS
 # ============================================
