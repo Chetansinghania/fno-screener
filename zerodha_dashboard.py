@@ -161,14 +161,20 @@ def scan_market():
 
         try:
 
-            response = fyers.quotes({
-                "symbols": stock
-            })
+            headers = {
+    "Authorization": f"{client_id}:{access_token}"
+}
+
+url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
+
+response = requests.get(url, headers=headers)
+
+data = response.json()
 
             if response.get("s") != "ok":
                 continue
 
-            data = response["d"][0]["v"]
+            data["d"][0]["v"]
 
             lp = data.get("lp")
             open_price = data.get("open_price")
