@@ -159,17 +159,31 @@ def scan_market():
 
     for stock in stocks:
 
-        try:
+    try:
 
-            headers = {
-    "Authorization": f"{client_id}:{access_token}"
-}
+    headers = {
+        "Authorization": f"{client_id}:{access_token}"
+    }
 
-url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
+    url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
 
-response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers)
 
-data = response.json()
+    data = response.json()
+
+    stock_data = data["d"][0]["v"]
+
+    lp = stock_data["lp"]
+    open_price = stock_data["open_price"]
+    change_pct = stock_data["chp"]
+    volume = stock_data["volume"]
+
+except Exception as e:
+
+    results.append({
+        "STOCK": stock,
+        "ERROR": str(e)
+    })
 
             if response.get("s") != "ok":
                 continue
