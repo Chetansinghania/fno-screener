@@ -13,7 +13,7 @@ access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZDoxIiwiZDoyIiw
 headers = {
     "Authorization": f"{client_id}:{access_token}"
 }
-
+symbol = "NSE:RELIANCE-EQ"
 url = f"https://api-t1.fyers.in/data/quotes?symbols={symbol}"
 
 response = requests.get(url, headers=headers)
