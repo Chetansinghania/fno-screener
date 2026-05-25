@@ -1,4 +1,4 @@
 streamlit
 pandas
 numpy
-fyers-apiv3==3.1.7
+fyers-api-v3
