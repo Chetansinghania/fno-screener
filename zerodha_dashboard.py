@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+from fyers_apiv3.FyersWebsocket import data_ws
 from fyers_apiv3 import fyersModel
 
 # ============================================
