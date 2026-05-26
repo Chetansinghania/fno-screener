@@ -32,10 +32,8 @@ for stock in stocks:
     }
 )
 
-        data = response.json()
-
-        if "d" not in data:
-    raise Exception(str(data))
+ if "d" not in data:
+    raise Exception(str(data))    
 
 stock_data = data["d"][0]["v"]
 
