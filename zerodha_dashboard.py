@@ -18,43 +18,47 @@ headers = {
 "Authorization": f"{client_id}:{access_token}"
 }
 results = []
+```python
 for stock in stocks:
-try:
 
-    url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
+    try:
 
-    response = requests.get(url, headers=headers)
+        url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
 
-    data = response.json()
+        response = requests.get(url, headers=headers)
 
-    stock_data = data["d"][0]["v"]
+        data = response.json()
 
-    lp = stock_data.get("lp", 0)
-    change_pct = stock_data.get("chp", 0)
-    volume = stock_data.get("volume", 0)
+        stock_data = data["d"][0]["v"]
 
-    signal = "NO TRADE"
+        lp = stock_data.get("lp", 0)
+        change_pct = stock_data.get("chp", 0)
+        volume = stock_data.get("volume", 0)
 
-    if change_pct > 1:
-        signal = "BUY"
+        signal = "NO TRADE"
 
-    elif change_pct < -1:
-        signal = "SELL"
+        if change_pct > 1:
+            signal = "BUY"
 
-    results.append({
-        "STOCK": stock,
-        "SIGNAL": signal,
-        "PRICE": lp,
-        "CHANGE %": change_pct,
-        "VOLUME": volume
-    })
+        elif change_pct < -1:
+            signal = "SELL"
 
-except Exception as e:
+        results.append({
+            "STOCK": stock,
+            "SIGNAL": signal,
+            "PRICE": lp,
+            "CHANGE %": change_pct,
+            "VOLUME": volume
+        })
 
-    results.append({
-        "STOCK": stock,
-        "ERROR": str(e)
-    })
+    except Exception as e:
+
+        results.append({
+            "STOCK": stock,
+            "ERROR": str(e)
+        })
+
 df = pd.DataFrame(results)
 st.dataframe(df, width='stretch')
 
+    
