@@ -201,7 +201,7 @@ for stock in stocks:
             "STOCK": stock,
             "ERROR": str(e)
         })
-```
+
 
 
             if response.get("s") != "ok":
