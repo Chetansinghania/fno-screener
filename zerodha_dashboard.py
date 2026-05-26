@@ -155,35 +155,54 @@ start_scan = st.button("🚀 START LIVE SCAN")
 
 def scan_market():
 
-    results = []
+   ```python
+results = []
 
-    for stock in stocks:
+for stock in stocks:
 
     try:
 
-    headers = {
-        "Authorization": f"{client_id}:{access_token}"
-    }
+        headers = {
+            "Authorization": f"{client_id}:{access_token}"
+        }
 
-    url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
+        url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
 
-    response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers)
 
-    data = response.json()
+        data = response.json()
 
-    stock_data = data["d"][0]["v"]
+        stock_data = data["d"][0]["v"]
 
-    lp = stock_data["lp"]
-    open_price = stock_data["open_price"]
-    change_pct = stock_data["chp"]
-    volume = stock_data["volume"]
+        lp = stock_data.get("lp", 0)
+        open_price = stock_data.get("open_price", 0)
+        change_pct = stock_data.get("chp", 0)
+        volume = stock_data.get("volume", 0)
 
-except Exception as e:
+        signal = "NO TRADE"
 
-    results.append({
-        "STOCK": stock,
-        "ERROR": str(e)
-    })
+        if change_pct > 1:
+            signal = "BUY"
+
+        elif change_pct < -1:
+            signal = "SELL"
+
+        results.append({
+            "STOCK": stock,
+            "SIGNAL": signal,
+            "PRICE": lp,
+            "CHANGE %": change_pct,
+            "VOLUME": volume
+        })
+
+    except Exception as e:
+
+        results.append({
+            "STOCK": stock,
+            "ERROR": str(e)
+        })
+```
+
 
             if response.get("s") != "ok":
                 continue
