@@ -10,6 +10,7 @@ stocks = [
 ]
 results = []
 for stock in stocks:
+
 try:
 
     url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
