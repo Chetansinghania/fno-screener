@@ -154,6 +154,7 @@ start_scan = st.button("🚀 START LIVE SCAN")
 # ============================================
 
 def scan_market():
+    pass
 
 results = []
 
