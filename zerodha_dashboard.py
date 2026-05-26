@@ -18,7 +18,7 @@ headers = {
 "Authorization": f"{client_id}:{access_token}"
 }
 results = []
-```python
+
 for stock in stocks:
 
     try:
