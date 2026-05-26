@@ -32,7 +32,7 @@ for stock in stocks:
     }
 )
 
- if "d" not in data:
+if "d" not in data:
     raise Exception(str(data))    
 
 stock_data = data["d"][0]["v"]
