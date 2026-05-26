@@ -204,7 +204,7 @@ for stock in stocks:
 
 
 
-            if response.get("s") != "ok":
+        if response.get("s") != "ok":
                 continue
 
             data["d"][0]["v"]
