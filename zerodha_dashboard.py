@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
 import requests
-st.set_page_config(page_title="F&O Screener", layout="wide")
-st.title("🚀 Live Institutional Momentum Screener")
-access_token = "'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZDoxIiwiZDoyIiwieDowIiwieDoxIiwieDoyIl0sImF0X2hhc2giOiJnQUFBQUFCcUVzbmhHTXhoZlc2SzU1aXE0bXY1SUhKR2hUTlljNWl3MUw1UmIzWHprblpZbkpkSzlaTWlJalFzT29mTWtfNG40cm50S0lqWUxTckNpVExSOThtVkllcXloYWhtRGdpekozREhCT0xJN1Y0TlZ2ND0iLCJkaXNwbGF5X25hbWUiOiIiLCJvbXMiOiJLMSIsImhzbV9rZXkiOiI1ZjhjYTgwMDA0YmRlMThhN2NkMDNmZjY2ZGU4NDM5OTkzNGQ1MGI4MmE0MDJhZmI4MzU4NDYzMCIsImlzRGRwaUVuYWJsZWQiOiJOIiwiaXNNdGZFbmFibGVkIjoiTiIsImZ5X2lkIjoiWEMwODE2MSIsImFwcFR5cGUiOjEwMCwiZXhwIjoxNzc5NjY5MDAwLCJpYXQiOjE3Nzk2MTYyMjUsImlzcyI6ImFwaS5meWVycy5pbiIsIm5iZiI6MTc3OTYxNjIyNSwic3ViIjoiYWNjZXNzX3Rva2VuIn0.kivfOJRPx0WPWjFvVao7LjA5ZSOAtDoheOCb6AKTYJc "
+st.title("LIVE F&O SCREENER")
+access_token = "'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiZDoxIiwiZDoyIiwieDowIiwieDoxIiwieDoyIl0sImF0X2hhc2giOiJnQUFBQUFCcUVzbmhHTXhoZlc2SzU1aXE0bXY1SUhKR2hUTlljNWl3MUw1UmIzWHprblpZbkpkSzlaTWlJalFzT29mTWtfNG40cm50S0lqWUxTckNpVExSOThtVkllcXloYWhtRGdpekozREhCT0xJN1Y0TlZ2ND0iLCJkaXNwbGF5X25hbWUiOiIiLCJvbXMiOiJLMSIsImhzbV9rZXkiOiI1ZjhjYTgwMDA0YmRlMThhN2NkMDNmZjY2ZGU4NDM5OTkzNGQ1MGI4MmE0MDJhZmI4MzU4NDYzMCIsImlzRGRwaUVuYWJsZWQiOiJOIiwiaXNNdGZFbmFibGVkIjoiTiIsImZ5X2lkIjoiWEMwODE2MSIsImFwcFR5cGUiOjEwMCwiZXhwIjoxNzc5NjY5MDAwLCJpYXQiOjE3Nzk2MTYyMjUsImlzcyI6ImFwaS5meWVycy5pbiIsIm5iZiI6MTc3OTYxNjIyNSwic3ViIjoiYWNjZXNzX3Rva2VuIn0.kivfOJRPx0WPWjFvVao7LjA5ZSOAtDoheOCb6AKTYJc"
 stocks = [
 "NSE:RELIANCE-EQ",
 "NSE:HDFCBANK-EQ",
@@ -11,9 +10,7 @@ stocks = [
 ]
 results = []
 for stock in stocks:
-
-    try:
-
+try:
 
     url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
 
@@ -32,23 +29,10 @@ for stock in stocks:
     stock_data = data["d"][0]["v"]
 
     lp = stock_data.get("lp", 0)
-    change_pct = stock_data.get("chp", 0)
-    volume = stock_data.get("volume", 0)
-
-    signal = "NO TRADE"
-
-    if change_pct > 1:
-        signal = "BUY"
-
-    elif change_pct < -1:
-        signal = "SELL"
 
     results.append({
         "STOCK": stock,
-        "SIGNAL": signal,
-        "PRICE": lp,
-        "CHANGE %": change_pct,
-        "VOLUME": volume
+        "PRICE": lp
     })
 
 except Exception as e:
@@ -58,5 +42,5 @@ except Exception as e:
         "ERROR": str(e)
     })
 df = pd.DataFrame(results)
-st.dataframe(df, width="stretch")
+st.dataframe(df)
 
