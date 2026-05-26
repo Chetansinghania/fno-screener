@@ -25,11 +25,19 @@ for stock in stocks:
 
         url = f"https://api-t1.fyers.in/data/quotes?symbols={stock}"
 
-        response = requests.get(url, headers=headers)
+        response = requests.get(
+    url,
+    headers={
+        "Authorization": f"Bearer {access_token}"
+    }
+)
 
         data = response.json()
 
-        stock_data = data["d"][0]["v"]
+        if "d" not in data:
+    raise Exception(str(data))
+
+stock_data = data["d"][0]["v"]
 
         lp = stock_data.get("lp", 0)
         change_pct = stock_data.get("chp", 0)
