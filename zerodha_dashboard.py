@@ -1,4 +1,3 @@
-:::writing{variant="standard" id="74281"}
 import streamlit as st
 import pandas as pd
 import requests
@@ -52,4 +51,3 @@ for stock in stocks:
 df = pd.DataFrame(results)
 
 st.dataframe(df)
-:::
