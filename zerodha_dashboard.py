@@ -2,20 +2,16 @@ import streamlit as st
 import pandas as pd
 from fyers_apiv3 import fyersModel
 
-st.set_page_config(page_title="F&O Screener", layout="wide")
-
-st.title("📈 LIVE F&O SCREENER")
+st.title("LIVE F&O SCREENER")
 
 client_id = "G5H4DU2N1A-100"
 
-with open("token.txt", "r") as f:
+with open("token.txt") as f:
 access_token = f.read().strip()
 
 fyers = fyersModel.FyersModel(
 client_id=client_id,
-token=access_token,
-is_async=False,
-log_path=""
+token=access_token
 )
 
 stocks = [
@@ -35,20 +31,9 @@ try:
         "symbols": stock
     })
 
-    if response.get("s") != "ok":
-        results.append({
-            "STOCK": stock,
-            "ERROR": response.get("message")
-        })
-        continue
-
-    values = response["d"][0]["v"]
-
     results.append({
         "STOCK": stock,
-        "PRICE": values.get("lp"),
-        "CHANGE %": values.get("chp"),
-        "VOLUME": values.get("volume")
+        "DATA": response
     })
 
 except Exception as e:
@@ -61,4 +46,4 @@ except Exception as e:
 
 df = pd.DataFrame(results)
 
-st.dataframe(df, use_container_width=True)
+st.dataframe(df)
