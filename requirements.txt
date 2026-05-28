@@ -1,3 +1,4 @@
 streamlit
 pandas
-fyers-apiv3
+requests
+fyers-apiv3==3.1.7
