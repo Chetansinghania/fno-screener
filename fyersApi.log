@@ -14732,3 +14732,4 @@
 {"level":"ERROR","location":"[get_call:183] fyersModel","message":{"API":"/quotes","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-05-25 20:28:53,575+0530","service":"FyersAPI"}
 {"level":"ERROR","location":"[get_call:183] fyersModel","message":{"API":"/quotes","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-05-25 20:28:54,367+0530","service":"FyersAPI"}
 {"level":"ERROR","location":"[get_call:183] fyersModel","message":{"API":"/quotes","error":"Expecting value: line 1 column 1 (char 0)"},"timestamp":"2026-05-25 20:28:54,881+0530","service":"FyersAPI"}
+{"level":"ERROR","location":"[get_call:165] fyersModel","message":{"API":"/quotes","Error":{"message":"Please provide valid token","code":-15,"s":"error"}},"timestamp":"2026-05-28 10:24:59,501+0530","service":"FyersAPI"}

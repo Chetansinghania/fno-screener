@@ -17461,3 +17461,4 @@
 {"level":"DEBUG","location":"[get_call:159] fyersModel","message":{"Status Code":429,"API":"/quotes"},"timestamp":"2026-05-25 20:28:53,575+0530","service":"FyersAPIRequest"}
 {"level":"DEBUG","location":"[get_call:159] fyersModel","message":{"Status Code":429,"API":"/quotes"},"timestamp":"2026-05-25 20:28:54,367+0530","service":"FyersAPIRequest"}
 {"level":"DEBUG","location":"[get_call:159] fyersModel","message":{"Status Code":429,"API":"/quotes"},"timestamp":"2026-05-25 20:28:54,865+0530","service":"FyersAPIRequest"}
+{"level":"DEBUG","location":"[get_call:159] fyersModel","message":{"Status Code":401,"API":"/quotes"},"timestamp":"2026-05-28 10:24:59,480+0530","service":"FyersAPIRequest"}
